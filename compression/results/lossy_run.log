@@ -1,0 +1,95 @@
+=== L1. the source ===
+  16 E2M1 levels, H = 3.8931 bit, E[v^2] = 5.2706 (E2M1 units)
+  FP4's own step already costs rel-MSE 0.01332 = 11.54% RMS (18.8 dB SQNR) on a Gaussian source  <- the noise floor everything adds to
+
+=== L2. rate-distortion: theoretical bound vs concrete schemes ===
+  scheme                                    bit/w  +scale  ratio  rel-RMSE  SQNR dB  x floor
+  stored FP4 (baseline)                     4.000   4.250  1.000     0.00%    120.0     0.00
+  R(D) bound at 3.5 bit                     3.500   3.750  0.882     4.59%     26.8     0.16
+  R(D) bound at 3.0 bit                     3.000   3.250  0.765     9.46%     20.5     0.67
+  R(D) bound at 2.5 bit                     2.500   2.750  0.647    15.81%     16.0     1.88
+  R(D) bound at 2.0 bit                     2.000   2.250  0.529    23.56%     12.6     4.17
+  R(D) bound at 1.5 bit                     1.500   1.750  0.412    34.44%      9.3     8.91
+  Lloyd-Max 2 levels (fixed 1 bit)          1.000   1.250  0.294    62.94%      4.0    29.75
+  Lloyd-Max 3 levels (fixed 2 bit)          2.000   2.250  0.529    45.19%      6.9    15.33
+  Lloyd-Max 3 levels + entropy coding       1.477   1.727  0.406    45.19%      6.9    15.33
+  Lloyd-Max 3 levels, base-3 packing (29 in 46 bit)  1.586   1.836  0.432    45.19%      6.9    15.33
+  Lloyd-Max 4 levels (fixed 2 bit)          2.000   2.250  0.529    35.10%      9.1     9.25
+  Lloyd-Max 4 levels + entropy coding       1.914   2.164  0.509    35.10%      9.1     9.25
+  Lloyd-Max 5 levels (fixed 3 bit)          3.000   3.250  0.765    27.77%     11.1     5.79
+  Lloyd-Max 5 levels + entropy coding       2.259   2.509  0.590    27.77%     11.1     5.79
+  Lloyd-Max 5 levels, base-5 packing (31 in 72 bit)  2.323   2.573  0.605    27.77%     11.1     5.79
+  Lloyd-Max 6 levels (fixed 3 bit)          3.000   3.250  0.765    24.82%     12.1     4.63
+  Lloyd-Max 6 levels + entropy coding       2.390   2.640  0.621    24.82%     12.1     4.63
+  Lloyd-Max 6 levels, base-6 packing (29 in 75 bit)  2.586   2.836  0.667    24.82%     12.1     4.63
+  Lloyd-Max 8 levels (fixed 3 bit)          3.000   3.250  0.765    19.60%     14.2     2.88
+  Lloyd-Max 8 levels + entropy coding       2.479   2.729  0.642    19.60%     14.2     2.88
+  Lloyd-Max 10 levels (fixed 4 bit)         4.000   4.250  1.000    15.15%     16.4     1.72
+  Lloyd-Max 10 levels + entropy coding      3.108   3.358  0.790    15.15%     16.4     1.72
+  Lloyd-Max 10 levels, base-10 packing (31 in 103 bit)  3.323   3.573  0.841    15.15%     16.4     1.72
+  Lloyd-Max 11 levels (fixed 4 bit)         4.000   4.250  1.000    12.68%     17.9     1.21
+  Lloyd-Max 11 levels + entropy coding      3.120   3.370  0.793    12.68%     17.9     1.21
+  Lloyd-Max 11 levels, base-11 packing (13 in 45 bit)  3.462   3.712  0.873    12.68%     17.9     1.21
+  Lloyd-Max 12 levels (fixed 4 bit)         4.000   4.250  1.000     9.45%     20.5     0.67
+  Lloyd-Max 12 levels + entropy coding      3.343   3.593  0.845     9.45%     20.5     0.67
+  Lloyd-Max 12 levels, base-12 packing (29 in 104 bit)  3.586   3.836  0.903     9.45%     20.5     0.67
+  Lloyd-Max 13 levels (fixed 4 bit)         4.000   4.250  1.000     5.95%     24.5     0.27
+  Lloyd-Max 13 levels + entropy coding      3.474   3.724  0.876     5.95%     24.5     0.27
+  Lloyd-Max 13 levels, base-13 packing (27 in 100 bit)  3.704   3.954  0.930     5.95%     24.5     0.27
+  Lloyd-Max 14 levels (fixed 4 bit)         4.000   4.250  1.000     3.90%     28.2     0.11
+  Lloyd-Max 14 levels + entropy coding      3.646   3.896  0.917     3.90%     28.2     0.11
+  Lloyd-Max 14 levels, base-14 packing (26 in 99 bit)  3.808   4.058  0.955     3.90%     28.2     0.11
+  Lloyd-Max 16 levels (fixed 4 bit)         4.000   4.250  1.000     0.00%    120.0     0.00
+  Lloyd-Max 16 levels + entropy coding      3.776   4.026  0.947     0.00%    120.0     0.00
+  E2M0: drop the mantissa bit               3.000   3.250  0.765    25.64%     11.8     4.94
+  3 bit, top-preserving codebook            3.000   3.250  0.765    32.61%      9.7     7.99
+  prune |v| <= 0.25 + bitmap (keep 88.3%)   4.533   4.783  1.126     0.00%    120.0     0.00
+  prune |v| <= 0.75 + bitmap (keep 73.7%)   3.947   4.197  0.987     8.34%     21.6     0.52
+  prune |v| <= 1.25 + bitmap (keep 53.4%)   3.134   3.384  0.796    21.33%     13.4     3.42
+  prune |v| <= 1.75 + bitmap (keep 43.1%)   2.723   2.973  0.699    29.91%     10.5     6.72
+  prune |v| <= 2.5 + bitmap (keep 26.1%)    2.044   2.294  0.540    46.70%      6.6    16.38
+  VQ dim 2, 64 entries (6 bit/group)        3.000   3.250  0.765    18.75%     14.5     2.64
+  VQ dim 2, 64 entries, E2M1-snapped        3.000   3.250  0.765    20.94%     13.6     3.29
+  VQ dim 2, 128 entries (7 bit/group)       3.500   3.750  0.882    11.29%     18.9     0.96
+  VQ dim 2, 128 entries, E2M1-snapped       3.500   3.750  0.882    12.84%     17.8     1.24
+  VQ dim 4, 1024 entries (10 bit/group)     2.500   2.750  0.647    21.88%     13.2     3.60
+  VQ dim 4, 1024 entries, E2M1-snapped      2.500   2.750  0.647    23.25%     12.7     4.06
+  VQ dim 4, 2048 entries (11 bit/group)     2.750   3.000  0.706    18.29%     14.8     2.51
+  VQ dim 4, 2048 entries, E2M1-snapped      2.750   3.000  0.706    19.50%     14.2     2.85
+  VQ dim 4, 4096 entries (12 bit/group)     3.000   3.250  0.765    14.85%     16.6     1.66
+  VQ dim 4, 4096 entries, E2M1-snapped      3.000   3.250  0.765    16.01%     15.9     1.92
+  VQ dim 4, 8192 entries (13 bit/group)     3.250   3.500  0.824    11.37%     18.9     0.97
+  VQ dim 4, 8192 entries, E2M1-snapped      3.250   3.500  0.824    12.58%     18.0     1.19
+  VQ dim 4, 16384 entries (14 bit/group)    3.500   3.750  0.882     8.03%     21.9     0.48
+  VQ dim 4, 16384 entries, E2M1-snapped     3.500   3.750  0.882     9.07%     20.9     0.62
+  VQ dim 4, 32768 entries (15 bit/group)    3.750   4.000  0.941     4.38%     27.2     0.14
+  VQ dim 4, 32768 entries, E2M1-snapped     3.750   4.000  0.941     5.10%     25.9     0.19
+
+=== L3. the same schemes on a real expert (layer 17, expert 5) ===
+  scheme                                    bit/w  ratio ||dW||/||W||   GEMM dy  expert dy
+  stored FP4 (baseline)                     4.000  1.000        0.00%     0.00%      0.00%
+  Lloyd-Max 12 levels                       4.000  1.000       10.75%    10.74%     17.84%
+  Lloyd-Max 8 levels                        3.000  0.765       23.73%    23.60%     38.72%
+  Lloyd-Max 6 levels                        3.000  0.765       25.65%    25.59%     41.71%
+  Lloyd-Max 4 levels                        2.000  0.529       36.57%    36.49%     57.59%
+  E2M0: drop the mantissa bit               3.000  0.765       25.94%    25.91%     50.25%
+  3 bit, top-preserving codebook            3.000  0.765       33.36%    33.41%    109.12%
+  VQ dim 2, 64 entries                      3.000  0.765       18.38%    18.41%     30.09%
+  VQ dim 2, 64 entries, E2M1-snapped        3.000  0.765       20.73%    20.80%     34.13%
+  VQ dim 4, 1024 entries                    2.500  0.647       22.24%    22.22%     35.98%
+  VQ dim 4, 1024 entries, E2M1-snapped      2.500  0.647       23.74%    23.67%     38.63%
+  VQ dim 4, 2048 entries                    2.750  0.706       18.41%    18.45%     30.07%
+  VQ dim 4, 2048 entries, E2M1-snapped      2.750  0.706       19.79%    19.83%     32.13%
+  VQ dim 4, 4096 entries                    3.000  0.765       14.90%    14.90%     24.50%
+  VQ dim 4, 4096 entries, E2M1-snapped      3.000  0.765       16.28%    16.30%     26.77%
+  VQ dim 4, 8192 entries                    3.250  0.824       11.44%    11.49%     18.92%
+  VQ dim 4, 8192 entries, E2M1-snapped      3.250  0.824       12.91%    12.95%     21.30%
+  VQ dim 4, 16384 entries                   3.500  0.882        8.06%     8.08%     13.28%
+  VQ dim 4, 16384 entries, E2M1-snapped     3.500  0.882        9.33%     9.34%     15.40%
+  VQ dim 4, 32768 entries                   3.750  0.941        4.29%     4.31%      7.12%
+  VQ dim 4, 32768 entries, E2M1-snapped     3.750  0.941        5.11%     5.10%      8.40%
+  2:4 structured sparsity (A100 mma.sp)     3.000  0.765       36.86%    36.96%     57.76%
+  scale block 32 -> 64 (4 bit payload)      4.000  1.000       45.18%    44.12%    131.83%
+  scale block 32 -> 128 (4 bit payload)     4.000  1.000       62.94%    62.23%    249.24%
+
+wrote results/lossy.csv / .json / _rd.json

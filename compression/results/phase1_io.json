@@ -1,0 +1,54 @@
+{
+ "chunks": {
+  "1MB": 976.5250827080472,
+  "4MB": 1422.5312076750774,
+  "19MB": 1612.9030307564826,
+  "64MB": 1666.6971485101699
+ },
+ "baseline_ms": 11.280177695633276,
+ "bandwidth_MBs": 1666.6971485101699,
+ "rows": [
+  {
+   "ratio": 0.8897,
+   "compressed_MB": 16.726929408,
+   "io_ms": 10.035974095804926,
+   "decode_budget_ms": 1.2442035998283494,
+   "required_decode_MBs": 15110.58158214117
+  },
+  {
+   "ratio": 0.9,
+   "compressed_MB": 16.920576,
+   "io_ms": 10.152159926069947,
+   "decode_budget_ms": 1.1280177695633282,
+   "required_decode_MBs": 16666.971485101687
+  },
+  {
+   "ratio": 0.8,
+   "compressed_MB": 15.040512,
+   "io_ms": 9.02414215650662,
+   "decode_budget_ms": 2.2560355391266547,
+   "required_decode_MBs": 8333.48574255085
+  },
+  {
+   "ratio": 0.7,
+   "compressed_MB": 13.160448,
+   "io_ms": 7.896124386943293,
+   "decode_budget_ms": 3.384053308689983,
+   "required_decode_MBs": 5555.657161700567
+  },
+  {
+   "ratio": 0.6,
+   "compressed_MB": 11.280384,
+   "io_ms": 6.768106617379965,
+   "decode_budget_ms": 4.51207107825331,
+   "required_decode_MBs": 4166.7428712754245
+  },
+  {
+   "ratio": 0.5,
+   "compressed_MB": 9.40032,
+   "io_ms": 5.640088847816638,
+   "decode_budget_ms": 5.640088847816638,
+   "required_decode_MBs": 3333.3942970203398
+  }
+ ]
+}

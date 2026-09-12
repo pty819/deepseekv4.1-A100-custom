@@ -1,0 +1,11 @@
+section,method,bits_per_weight,ratio_vs_4bit,note
+F,XOR vs best matching expert,3.9971416711604255,0.9992854177901064,"layer 17 w1, aligned (row,k)"
+F,XOR vs reference expert 0,3.997351013999622,0.9993377534999055,"layer 17 w1, aligned (row,k)"
+F,"XOR w1 vs w3 (same expert, same position)",3.9967868157430884,0.9991967039357721,agreement 0.0720 vs chance 0.0709
+F,aligned-block NN over 47 experts,,,mean Hamming 49.59/128 vs random pair 63.04
+F,block XOR vs nearest aligned expert,4.021917449339459,1.0054793623348648,"H(res)=3.8483, + 5.6 index bits per 32-weight block"
+G,raw scale byte,0.25,,8.0000 bit per scale byte; expert total with raw payload 4.2500 bit/weight = 1.0000x
+G,order-0 entropy,0.03151800340065001,,1.0086 bit per scale byte; expert total with raw payload 4.0315 bit/weight = 0.9486x
+G,H(s | left),0.03143395199120611,,1.0059 bit per scale byte; expert total with raw payload 4.0314 bit/weight = 0.9486x
+G,"H(s | left, up)",0.03140665520860721,,1.0050 bit per scale byte; expert total with raw payload 4.0314 bit/weight = 0.9486x
+G,zstd-9 on raw scales,0.04228877314814815,,1.3532 bit per scale byte; expert total with raw payload 4.0423 bit/weight = 0.9511x

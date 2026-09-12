@@ -1,0 +1,67 @@
+sample: 1,003,520 blocks = 32.1M weights from layers [0, 5, 11, 17, 23, 29, 35, 39], 16 experts/layer, 20 rows/matrix
+
+=== A. baselines ===
+nibble order-0 entropy      H(W) = 3.8931 bit  (0.9733 x 4 bit)
+byte order-0 entropy             = 7.7585 bit/byte -> 3.8793 bit/weight
+scale byte entropy               = 1.0096 bit/byte over 6 distinct values [119, 120, 121, 122, 123, 124]
+real codecs on 4 complete experts (17.7 MB payload each)
+  zstd-1         ratio 0.9743    768.9 MB/s enc
+  zstd-3         ratio 0.9758    446.9 MB/s enc
+  zstd-9         ratio 0.9743    536.7 MB/s enc
+  zstd-19        ratio 0.9747      6.4 MB/s enc
+  lz4            ratio 1.0001   1280.4 MB/s enc
+  gzip-6         ratio 0.9782     18.4 MB/s enc
+  zstd-9 scales  ratio 0.1691     35.3 MB/s enc
+
+=== B. conditional entropy (H_test = held-out, +table = shipped tables) ===
+  H(W)                                           H=3.8931  H_test=3.8933  +table 0.0000 -> 3.8933 bit  (0.9733x)   [1 ctx]
+  H(W | scale)                                   H=3.7704  H_test=3.7709  +table 0.0000 -> 3.7709 bit  (0.9427x)   [6 ctx]
+  H(W | position_in_block)                       H=3.8931  H_test=3.8933  +table 0.0000 -> 3.8933 bit  (0.9733x)   [32 ctx]
+  H(W | scale, position)                         H=3.7704  H_test=3.7710  +table 0.0000 -> 3.7710 bit  (0.9427x)   [192 ctx]
+  H(W | layer)                                   H=3.8927  H_test=3.8929  +table 0.0000 -> 3.8929 bit  (0.9732x)   [8 ctx]
+  H(W | layer, matrix)                           H=3.8926  H_test=3.8928  +table 0.0000 -> 3.8928 bit  (0.9732x)   [24 ctx]
+  H(W | expert, matrix) [per-expert tables]      H=3.8921  H_test=3.8928  +table 0.0000 -> 3.8929 bit  (0.9732x)   [384 ctx]
+  H(W | layer, matrix, scale, position)          H=3.7680  H_test=3.7707  +table 0.0000 -> 3.7707 bit  (0.9427x)   [3136 ctx]
+  H(W_i | W_i-1)  Markov-1                       H=3.8673  H_test=3.8675  +table 0.0000 -> 3.8675 bit  (0.9669x)   [16 ctx]
+  H(W_i | W_i-1, W_i-2)  Markov-2                H=3.8447  H_test=3.8454  +table 0.0000 -> 3.8454 bit  (0.9613x)   [256 ctx]
+  H(W_i | W_i-1..3)  Markov-3                    H=3.8243  H_test=3.8289  +table 0.0000 -> 3.8289 bit  (0.9572x)   [4096 ctx]
+  H(W | position, running block max)             H=3.8204  H_test=3.8211  +table 0.0000 -> 3.8211 bit  (0.9553x)   [222 ctx]
+  H(W | pos, runmax, W_i-1)                      H=3.8070  H_test=3.8095  +table 0.0000 -> 3.8095 bit  (0.9524x)   [2075 ctx]
+  H(W | layer, matrix, scale, pos, runmax)       H=3.7511  H_test=3.7600  +table 0.0000 -> 3.7600 bit  (0.9400x)   [12299 ctx]
+
+=== B2. richer context models (the 'learned predictor' family) ===
+  H(W | pos, running mean magnitude)             H=3.8082  H_test=3.8088  +table 0.0000 -> 3.8088 bit  (0.9522x)   [248 ctx]
+  H(W | scale, pos, runmax, W_i-1)               H=3.7445  H_test=3.7497  +table 0.0000 -> 3.7497 bit  (0.9374x)   [6867 ctx]
+  H(W | scale, pos, runmean, W_i-1)              H=3.7529  H_test=3.7596  +table 0.0000 -> 3.7596 bit  (0.9399x)   [9247 ctx]
+  H(W | layer, mat, scale, pos, runmax, W_i-1)   H=3.7159  H_test=3.7874  +table 0.0000 -> 3.7874 bit  (0.9469x)   [98405 ctx]
+  H(W | block class(2), scale, pos)              H=3.7638  H_test=3.7645  +side 0.0312 -> 3.7957 bit  (0.9489x)
+  H(W | block class(4), scale, pos)              H=3.7472  H_test=3.7481  +side 0.0625 -> 3.8106 bit  (0.9527x)
+  H(W | block class(8), scale, pos)              H=3.7409  H_test=3.7420  +side 0.0938 -> 3.8358 bit  (0.9589x)
+  H(W | block class(16), scale, pos)             H=3.7383  H_test=3.7400  +side 0.1250 -> 3.8650 bit  (0.9662x)
+
+=== C. bit-planes (bit3=sign, bit2:1=exponent, bit0=mantissa) ===
+  bit3 sign      P(1)=0.4999  H=1.0000  H|pos=1.0000  H|scale,pos=1.0000  H|prev nibble=1.0000  H|pos,runmax=1.0000
+  bit2 exp-hi    P(1)=0.4306  H=0.9861  H|pos=0.9861  H|scale,pos=0.9153  H|prev nibble=0.9738  H|pos,runmax=0.9496
+  bit1 exp-lo    P(1)=0.4440  H=0.9909  H|pos=0.9909  H|scale,pos=0.9874  H|prev nibble=0.9903  H|pos,runmax=0.9884
+  bit0 mantissa  P(1)=0.4130  H=0.9781  H|pos=0.9781  H|scale,pos=0.9677  H|prev nibble=0.9734  H|pos,runmax=0.9679
+  sum of independent per-plane coders (cond. on scale,pos) = 3.8708 bit/weight (0.9677x)  vs joint H(W|scale,pos)
+  chained plane coders (each cond. on higher planes)      = 3.8933 bit/weight (= H(W))
+
+=== D. PRNG XOR residual ===
+  XOR with fixed PRNG (per matrix): residual H=4.0000  zero-nibble 0.0625  zstd-9 1.0000
+  XOR with fixed PRNG (per expert): residual H=4.0000  zero-nibble 0.0625  zstd-9 1.0000
+  XOR with fixed PRNG (per block ): residual H=4.0000  zero-nibble 0.0625  zstd-9 1.0000
+  (baseline: zero-nibble rate 0.0583, H=3.8931)
+
+=== E. block dictionary (32-weight = 128-bit blocks) ===
+  exact duplicate blocks: 0.0000%  (0 of 1,003,520); max multiplicity 1
+  random pair Hamming: mean 63.01 bit (of 128), min 39
+  D=256    NN Hamming mean 46.01  residual zero-nibble 0.1728  H(res)=3.7638  -> 4.0138 bit/weight (1.0035x)  [0.6s]
+  D=1024   NN Hamming mean 43.45  residual zero-nibble 0.1953  H(res)=3.6917  -> 4.0042 bit/weight (1.0010x)  [0.7s]
+  D=4096   NN Hamming mean 41.15  residual zero-nibble 0.2177  H(res)=3.6185  -> 3.9935 bit/weight (0.9984x)  [1.0s]
+  D=16384  NN Hamming mean 38.69  residual zero-nibble 0.2472  H(res)=3.5297  -> 3.9673 bit/weight (0.9918x)  [2.3s]
+  D=65536  NN Hamming mean 35.24  residual zero-nibble 0.2995  H(res)=3.3862  -> 3.8862 bit/weight (0.9716x)  [5.4s]
+  D=983,520 (every other sampled block) NN Hamming mean 34.47  zero-nibble 0.2899  H(res)=3.3562 -> 3.9783 bit/weight (dictionary storage ignored)  [12.6s]
+  control (nibbles shuffled across blocks, D=65536): NN Hamming mean 36.66  H(res)=3.4512   <- compare with the real D=65536 line
+
+wrote results/phase1.json / .csv / .md

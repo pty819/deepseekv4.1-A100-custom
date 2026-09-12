@@ -1,0 +1,7 @@
+{
+ "bits": 3.5,
+ "K": 16384,
+ "rel_rmse_float": 0.08032893490537854,
+ "rel_rmse_snapped": 0.0906525315797195,
+ "identity_fraction": 0.238861083984375
+}

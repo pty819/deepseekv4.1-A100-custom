@@ -1,0 +1,13 @@
+tag,mean_bits,ratio_scales_8bit,ratio_scales_4bit,ppl,delta_pct,calib,shrink,tokens
+baseline,4.0,1.0,0.9706,3.0765,0.0,none,,32752
+vq3.75-all,3.75,0.9412,0.9118,3.0941,0.57,none,,32752
+mixed3.5,3.501,0.8825,0.8531,3.1002,0.77,none,,32752
+mixed3.5-calib-shrink1024,3.501,0.8825,0.8531,3.1076,1.01,results/calib_hess.pt,1024.0,32752
+mixed3.5-calib,3.501,0.8825,0.8531,3.1113,1.13,results/calib_hess.pt,,32752
+vq3.5-calib,3.5,0.8824,0.8529,3.1256,1.6,results/calib_hess.pt,,32752
+vq3.5-all,3.5,0.8824,0.8529,3.1295,1.72,none,,32752
+vq3.0-half,3.5,0.8824,0.8529,3.1469,2.29,none,,32752
+mixed3.25,3.251,0.8237,0.7943,3.1472,2.3,none,,32752
+vq3.0-calib-shrink1024,3.0,0.7647,0.7353,3.1867,3.58,results/calib_hess.pt,1024.0,32752
+vq3.0-calib,3.0,0.7647,0.7353,3.1929,3.78,results/calib_hess.pt,,32752
+vq3.0-all,3.0,0.7647,0.7353,3.2067,4.23,none,,32752

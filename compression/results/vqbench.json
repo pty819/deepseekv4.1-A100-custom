@@ -1,0 +1,80 @@
+[
+ {
+  "format": "fp4_k64",
+  "bits_per_weight": 4.0,
+  "bytes_per_expert_MB": 12.53376,
+  "read_ms": 0.12594716778645912,
+  "read_decode_ms": 0.13846063520759344,
+  "total_ms": 0.142746864973257,
+  "decode_ms": 0.012513467421134317,
+  "mma_ms": 0.004286229765663546,
+  "read_GBs": 1592.2562096831884,
+  "total_vs_fp4": 1.0,
+  "smem_lut_bytes": 0
+ },
+ {
+  "format": "vq12_k64",
+  "bits_per_weight": 3.0,
+  "bytes_per_expert_MB": 9.58464,
+  "read_ms": 0.11323296542589864,
+  "read_decode_ms": 0.13398409743482867,
+  "total_ms": 0.15646896790713072,
+  "decode_ms": 0.020751132008930036,
+  "mma_ms": 0.02248487047230204,
+  "read_GBs": 1354.325036204738,
+  "total_vs_fp4": 1.0961289267995098,
+  "smem_lut_bytes": 16384
+ },
+ {
+  "format": "vq14_k64",
+  "bits_per_weight": 3.5,
+  "bytes_per_expert_MB": 11.0592,
+  "read_ms": 0.16359326352054873,
+  "read_decode_ms": 0.1830096667011579,
+  "total_ms": 0.21050686870391172,
+  "decode_ms": 0.019416403180609144,
+  "mma_ms": 0.027497202002753823,
+  "read_GBs": 1081.6288897970048,
+  "total_vs_fp4": 1.4746864580412975,
+  "smem_lut_bytes": 32768
+ },
+ {
+  "format": "fp4_k128",
+  "bits_per_weight": 4.0,
+  "bytes_per_expert_MB": 12.53376,
+  "read_ms": 0.13075806588555378,
+  "read_decode_ms": 0.14372963147858778,
+  "total_ms": 0.1392410990471641,
+  "decode_ms": 0.012971565593034019,
+  "mma_ms": -0.004488532431423659,
+  "read_GBs": 1533.6733427635977,
+  "total_vs_fp4": 0.9754406800685279,
+  "smem_lut_bytes": 0
+ },
+ {
+  "format": "vq12_k128",
+  "bits_per_weight": 3.0,
+  "bytes_per_expert_MB": 9.58464,
+  "read_ms": 0.10275283129885793,
+  "read_decode_ms": 0.1371426663051049,
+  "total_ms": 0.1646907029983898,
+  "decode_ms": 0.03438983500624698,
+  "mma_ms": 0.0275480366932849,
+  "read_GBs": 1492.4575611349067,
+  "total_vs_fp4": 1.1537255338619443,
+  "smem_lut_bytes": 16384
+ },
+ {
+  "format": "vq14_k128",
+  "bits_per_weight": 3.5,
+  "bytes_per_expert_MB": 11.0592,
+  "read_ms": 0.13592669662709037,
+  "read_decode_ms": 0.16879290342330933,
+  "total_ms": 0.20201570199181637,
+  "decode_ms": 0.03286620679621895,
+  "mma_ms": 0.033222798568507045,
+  "read_GBs": 1301.784008519296,
+  "total_vs_fp4": 1.415202372603161,
+  "smem_lut_bytes": 32768
+ }
+]

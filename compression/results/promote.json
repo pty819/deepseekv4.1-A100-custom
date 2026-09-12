@@ -1,0 +1,106 @@
+[
+ {
+  "K": 0,
+  "stored_two_copies": 3.0,
+  "stored_in_place": 3.0,
+  "transferred_B1": 3.0000000000000004,
+  "transferred_B32": 2.9999999999999996,
+  "damage_fitted_task_pct": 26.77,
+  "damage_other_tasks_pct": 26.769999999999992
+ },
+ {
+  "K": 8,
+  "stored_two_copies": 3.0833333333333335,
+  "stored_in_place": 3.0208333333333335,
+  "transferred_B1": 3.223319823232323,
+  "transferred_B32": 3.076794185690927,
+  "damage_fitted_task_pct": 18.776564054516033,
+  "damage_other_tasks_pct": 25.908590030596994
+ },
+ {
+  "K": 16,
+  "stored_two_copies": 3.1666666666666665,
+  "stored_in_place": 3.0416666666666665,
+  "transferred_B1": 3.3360520202020205,
+  "transferred_B32": 3.148351754492715,
+  "damage_fitted_task_pct": 16.043001567640804,
+  "damage_other_tasks_pct": 25.383943539823978
+ },
+ {
+  "K": 32,
+  "stored_two_copies": 3.3333333333333335,
+  "stored_in_place": 3.0833333333333335,
+  "transferred_B1": 3.482002146464646,
+  "transferred_B32": 3.2755974197489564,
+  "damage_fitted_task_pct": 12.668767661192359,
+  "damage_other_tasks_pct": 24.488820423761794
+ },
+ {
+  "K": 64,
+  "stored_two_copies": 3.6666666666666665,
+  "stored_in_place": 3.1666666666666665,
+  "transferred_B1": 3.6552560606060602,
+  "transferred_B32": 3.475007615401686,
+  "damage_fitted_task_pct": 8.418752242696518,
+  "damage_other_tasks_pct": 22.960262693249444
+ },
+ {
+  "K": 96,
+  "stored_two_copies": 4.0,
+  "stored_in_place": 3.25,
+  "transferred_B1": 3.7682457070707067,
+  "transferred_B32": 3.627590479165217,
+  "damage_fitted_task_pct": 5.501528660579165,
+  "damage_other_tasks_pct": 21.531997916271422
+ },
+ {
+  "K": 128,
+  "stored_two_copies": 4.333333333333333,
+  "stored_in_place": 3.3333333333333335,
+  "transferred_B1": 3.845884469696969,
+  "transferred_B32": 3.7430823864355443,
+  "damage_fitted_task_pct": 3.448031154795879,
+  "damage_other_tasks_pct": 20.270055121162077
+ },
+ {
+  "K": 192,
+  "stored_two_copies": 5.0,
+  "stored_in_place": 3.5,
+  "transferred_B1": 3.939967929292929,
+  "transferred_B32": 3.894672365713491,
+  "damage_fitted_task_pct": 1.0830709897207507,
+  "damage_other_tasks_pct": 17.56752517357956
+ },
+ {
+  "K": 384,
+  "stored_two_copies": 7.0,
+  "stored_in_place": 4.0,
+  "transferred_B1": 4.0,
+  "transferred_B32": 4.0,
+  "damage_fitted_task_pct": 0.0,
+  "damage_other_tasks_pct": 0.0
+ },
+ {
+  "K": 16,
+  "switch_worst_fraction": 0.946875,
+  "switch_traffic_GB": 11.393187840000001
+ },
+ {
+  "K": 32,
+  "switch_worst_fraction": 0.903125,
+  "switch_traffic_GB": 21.733539840000002
+ },
+ {
+  "K": 64,
+  "switch_worst_fraction": 0.7875,
+  "switch_traffic_GB": 37.90209024000001
+ },
+ {
+  "K": 128,
+  "switch_worst_fraction": 0.601171875,
+  "switch_traffic_GB": 57.868369920000006
+ },
+ {
+  "per_token_rel_spread_pct": 1.5266201496124268
+ }
+]

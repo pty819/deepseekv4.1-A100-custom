@@ -1,0 +1,191 @@
+[
+ {
+  "floor_bits": 2.5,
+  "mean_bits": 3.71416015625,
+  "ratio_incl_4bit_scales": 0.9033318014705882,
+  "uniform_expert_rms_err_pct": 9.403515624999995,
+  "mixed_expert_rms_err_pct": 0.8940525884284894,
+  "worst_task_rms_err_pct": 0.9982875017260142,
+  "any_task_bound_rms_err_pct": 16.402456892868088,
+  "per_task": {
+   "japanese": 0.9942489820609416,
+   "coding": 0.9982875017260142,
+   "math": 0.9905892282501846,
+   "english": 0.9240136667631762,
+   "translation": 0.4200867820538972
+  },
+  "bit_histogram": {
+   "2.5": 2604,
+   "2.75": 58,
+   "3.0": 68,
+   "3.25": 107,
+   "3.5": 156,
+   "3.75": 743,
+   "4.0": 11624
+  }
+ },
+ {
+  "floor_bits": 2.5,
+  "mean_bits": 3.5003255208333335,
+  "ratio_incl_4bit_scales": 0.8530177696078431,
+  "uniform_expert_rms_err_pct": 15.390885416666663,
+  "mixed_expert_rms_err_pct": 3.4148408669739028,
+  "worst_task_rms_err_pct": 4.020161799767035,
+  "any_task_bound_rms_err_pct": 21.011940493616756,
+  "per_task": {
+   "japanese": 3.4522863315091774,
+   "coding": 4.020161799767035,
+   "math": 3.65578256733407,
+   "english": 3.4613812218849476,
+   "translation": 2.209027564314834
+  },
+  "bit_histogram": {
+   "2.5": 3674,
+   "2.75": 578,
+   "3.0": 356,
+   "3.25": 355,
+   "3.5": 570,
+   "3.75": 2137,
+   "4.0": 7690
+  }
+ },
+ {
+  "floor_bits": 2.5,
+  "mean_bits": 3.250260416666667,
+  "ratio_incl_4bit_scales": 0.7941789215686275,
+  "uniform_expert_rms_err_pct": 21.293854166666662,
+  "mixed_expert_rms_err_pct": 7.015809188006352,
+  "worst_task_rms_err_pct": 8.342660122602002,
+  "any_task_bound_rms_err_pct": 25.910625837966634,
+  "per_task": {
+   "japanese": 6.521356928998065,
+   "coding": 8.342660122602002,
+   "math": 7.423284350278358,
+   "english": 6.88528903608467,
+   "translation": 5.609586708520657
+  },
+  "bit_histogram": {
+   "2.5": 5667,
+   "2.75": 869,
+   "3.0": 494,
+   "3.25": 515,
+   "3.5": 776,
+   "3.75": 2644,
+   "4.0": 4395
+  }
+ },
+ {
+  "floor_bits": 2.5,
+  "mean_bits": 3.000390625,
+  "ratio_incl_4bit_scales": 0.7353860294117647,
+  "uniform_expert_rms_err_pct": 26.761453124999996,
+  "mixed_expert_rms_err_pct": 12.005910868300571,
+  "worst_task_rms_err_pct": 14.2924152431248,
+  "any_task_bound_rms_err_pct": 30.24028274882969,
+  "per_task": {
+   "japanese": 10.655251209108602,
+   "coding": 14.2924152431248,
+   "math": 12.538668762539748,
+   "english": 11.770276511593453,
+   "translation": 10.351055191656238
+  },
+  "bit_histogram": {
+   "2.5": 7909,
+   "2.75": 1152,
+   "3.0": 587,
+   "3.25": 578,
+   "3.5": 844,
+   "3.75": 2432,
+   "4.0": 1858
+  }
+ },
+ {
+  "floor_bits": 3.0,
+  "mean_bits": 3.7495930989583335,
+  "ratio_incl_4bit_scales": 0.9116689644607844,
+  "uniform_expert_rms_err_pct": 8.411393229166663,
+  "mixed_expert_rms_err_pct": 1.443782198695347,
+  "worst_task_rms_err_pct": 1.65683285535184,
+  "any_task_bound_rms_err_pct": 12.883112234991007,
+  "per_task": {
+   "japanese": 1.5414033010842432,
+   "coding": 1.65683285535184,
+   "math": 1.5804932536497225,
+   "english": 1.4811928181809169,
+   "translation": 0.7807847652958576
+  },
+  "bit_histogram": {
+   "3.0": 3180,
+   "3.25": 218,
+   "3.5": 309,
+   "3.75": 1393,
+   "4.0": 10260
+  }
+ },
+ {
+  "floor_bits": 3.0,
+  "mean_bits": 3.500341796875,
+  "ratio_incl_4bit_scales": 0.8530215992647059,
+  "uniform_expert_rms_err_pct": 15.390429687500001,
+  "mixed_expert_rms_err_pct": 4.995381559521141,
+  "worst_task_rms_err_pct": 5.925259488584257,
+  "any_task_bound_rms_err_pct": 18.200356318412766,
+  "per_task": {
+   "japanese": 4.641764041294739,
+   "coding": 5.925259488584257,
+   "math": 5.292807509888729,
+   "english": 4.87706427286463,
+   "translation": 4.039176146879154
+  },
+  "bit_histogram": {
+   "3.0": 6290,
+   "3.25": 508,
+   "3.5": 694,
+   "3.75": 2627,
+   "4.0": 5241
+  }
+ },
+ {
+  "floor_bits": 3.0,
+  "mean_bits": 3.2502766927083333,
+  "ratio_incl_4bit_scales": 0.7941827512254902,
+  "uniform_expert_rms_err_pct": 21.293470052083332,
+  "mixed_expert_rms_err_pct": 10.803367240867138,
+  "worst_task_rms_err_pct": 12.768067003287817,
+  "any_task_bound_rms_err_pct": 22.60753335133603,
+  "per_task": {
+   "japanese": 9.402796046076707,
+   "coding": 12.768067003287817,
+   "math": 11.200267332111629,
+   "english": 10.727047875796101,
+   "translation": 9.571419214528987
+  },
+  "bit_histogram": {
+   "3.0": 10054,
+   "3.25": 637,
+   "3.5": 820,
+   "3.75": 2296,
+   "4.0": 1553
+  }
+ },
+ {
+  "floor_bits": 3.0,
+  "mean_bits": 3.000244140625,
+  "ratio_incl_4bit_scales": 0.7353515625,
+  "uniform_expert_rms_err_pct": 26.764658203125,
+  "mixed_expert_rms_err_pct": 26.661096504312766,
+  "worst_task_rms_err_pct": 26.76094790272122,
+  "any_task_bound_rms_err_pct": 26.765203526672813,
+  "per_task": {
+   "japanese": 26.451963473659983,
+   "coding": 26.76060766902115,
+   "math": 26.75852880933843,
+   "english": 26.76094790272122,
+   "translation": 26.571914551682603
+  },
+  "bit_histogram": {
+   "3.0": 15345,
+   "3.25": 15
+  }
+ }
+]

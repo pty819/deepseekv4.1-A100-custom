@@ -1,0 +1,134 @@
+[
+ {
+  "tag": "baseline",
+  "mean_bits": 4.0,
+  "ratio_scales_8bit": 1.0,
+  "ratio_scales_4bit": 0.9706,
+  "ppl": 3.0765,
+  "delta_pct": 0.0,
+  "calib": "none",
+  "shrink": "",
+  "tokens": 32752
+ },
+ {
+  "tag": "vq3.75-all",
+  "mean_bits": 3.75,
+  "ratio_scales_8bit": 0.9412,
+  "ratio_scales_4bit": 0.9118,
+  "ppl": 3.0941,
+  "delta_pct": 0.57,
+  "calib": "none",
+  "shrink": "",
+  "tokens": 32752
+ },
+ {
+  "tag": "mixed3.5",
+  "mean_bits": 3.501,
+  "ratio_scales_8bit": 0.8825,
+  "ratio_scales_4bit": 0.8531,
+  "ppl": 3.1002,
+  "delta_pct": 0.77,
+  "calib": "none",
+  "shrink": "",
+  "tokens": 32752
+ },
+ {
+  "tag": "mixed3.5-calib-shrink1024",
+  "mean_bits": 3.501,
+  "ratio_scales_8bit": 0.8825,
+  "ratio_scales_4bit": 0.8531,
+  "ppl": 3.1076,
+  "delta_pct": 1.01,
+  "calib": "results/calib_hess.pt",
+  "shrink": 1024.0,
+  "tokens": 32752
+ },
+ {
+  "tag": "mixed3.5-calib",
+  "mean_bits": 3.501,
+  "ratio_scales_8bit": 0.8825,
+  "ratio_scales_4bit": 0.8531,
+  "ppl": 3.1113,
+  "delta_pct": 1.13,
+  "calib": "results/calib_hess.pt",
+  "shrink": "",
+  "tokens": 32752
+ },
+ {
+  "tag": "vq3.5-calib",
+  "mean_bits": 3.5,
+  "ratio_scales_8bit": 0.8824,
+  "ratio_scales_4bit": 0.8529,
+  "ppl": 3.1256,
+  "delta_pct": 1.6,
+  "calib": "results/calib_hess.pt",
+  "shrink": "",
+  "tokens": 32752
+ },
+ {
+  "tag": "vq3.5-all",
+  "mean_bits": 3.5,
+  "ratio_scales_8bit": 0.8824,
+  "ratio_scales_4bit": 0.8529,
+  "ppl": 3.1295,
+  "delta_pct": 1.72,
+  "calib": "none",
+  "shrink": "",
+  "tokens": 32752
+ },
+ {
+  "tag": "vq3.0-half",
+  "mean_bits": 3.5,
+  "ratio_scales_8bit": 0.8824,
+  "ratio_scales_4bit": 0.8529,
+  "ppl": 3.1469,
+  "delta_pct": 2.29,
+  "calib": "none",
+  "shrink": "",
+  "tokens": 32752
+ },
+ {
+  "tag": "mixed3.25",
+  "mean_bits": 3.251,
+  "ratio_scales_8bit": 0.8237,
+  "ratio_scales_4bit": 0.7943,
+  "ppl": 3.1472,
+  "delta_pct": 2.3,
+  "calib": "none",
+  "shrink": "",
+  "tokens": 32752
+ },
+ {
+  "tag": "vq3.0-calib-shrink1024",
+  "mean_bits": 3.0,
+  "ratio_scales_8bit": 0.7647,
+  "ratio_scales_4bit": 0.7353,
+  "ppl": 3.1867,
+  "delta_pct": 3.58,
+  "calib": "results/calib_hess.pt",
+  "shrink": 1024.0,
+  "tokens": 32752
+ },
+ {
+  "tag": "vq3.0-calib",
+  "mean_bits": 3.0,
+  "ratio_scales_8bit": 0.7647,
+  "ratio_scales_4bit": 0.7353,
+  "ppl": 3.1929,
+  "delta_pct": 3.78,
+  "calib": "results/calib_hess.pt",
+  "shrink": "",
+  "tokens": 32752
+ },
+ {
+  "tag": "vq3.0-all",
+  "mean_bits": 3.0,
+  "ratio_scales_8bit": 0.7647,
+  "ratio_scales_4bit": 0.7353,
+  "ppl": 3.2067,
+  "delta_pct": 4.23,
+  "calib": "none",
+  "shrink": "",
+  "tokens": 32752
+ }
+]

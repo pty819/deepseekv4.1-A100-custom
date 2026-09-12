@@ -1,0 +1,7 @@
+# Regenerable analysis artifacts; README section 0 lists how to rebuild each.
+# the sampled blocks (sample.py) and the code eval corpus
+data/
+# 436 MB of per-expert activation Hessians (calib_collect.py)
+results/calib_hess.pt
+*.cubin
+__pycache__/

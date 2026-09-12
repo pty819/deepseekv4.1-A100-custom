@@ -1,0 +1,52 @@
+section,method,bits_per_weight,ratio_vs_4bit,note,H_given_pos,H_given_pos_runmax,H_given_prev_nibble,H_given_scale_pos,H_plane,H_plugin,H_test,dict_bits_per_weight,enc_mbs,index_bits,n_ctx_used,residual_bits_per_weight,table_bits_per_weight
+A,raw FP4 payload,4.0,1.0,stored form,,,,,,,,,,,,,
+A,order-0 nibble entropy H(W),3.893106428209577,0.9732766070523943,static Huffman/rANS limit,,,,,,,,,,,,,
+A,order-0 byte entropy,3.8792549440151607,0.9698137360037902,pairs of nibbles as one symbol,,,,,,,,,,,,,
+A,order-0 scale entropy,0.03154916121873001,0.12619664487492005,6 distinct E8M0 bytes; bits/weight column is the scale share,,,,,,,,,,,,,
+A,zstd level 1 (payload),3.897349661367911,0.9743374153419777,real codec on whole expert payload,,,,,,,,,768.9171311560636,,,,
+A,zstd level 3 (payload),3.903342522515191,0.9758356306287977,real codec on whole expert payload,,,,,,,,,446.8657926577896,,,,
+A,zstd level 9 (payload),3.8973498309100116,0.9743374577275029,real codec on whole expert payload,,,,,,,,,536.7272567012591,,,,
+A,zstd level 19 (payload),3.898957994249132,0.974739498562283,real codec on whole expert payload,,,,,,,,,6.396757439684752,,,,
+A,lz4 (payload),4.000248435691551,1.0000621089228878,real codec,,,,,,,,,1280.3766906733374,,,,
+A,gzip -6 (payload),3.912992915400752,0.978248228850188,real codec,,,,,,,,,18.36487666711434,,,,
+A,zstd level 9 (scales only),0.042279052734375,0.1691162109375,scale bytes are 5.9% of an expert,,,,,,,,,,,,,
+B,H(W),3.893275613522734,0.9733189033806835,order-0,,,,,,3.893106428209577,3.893275613191597,,,,1,,3.311369154188368e-10
+B,H(W | scale),3.770895986739288,0.942723996684822,exact E8M0 byte,,,,,,3.7704341748858594,3.7708959847524666,,,,6,,1.986821492513021e-09
+B,H(W | position_in_block),3.893298753226087,0.9733246883065217,,,,,,,3.8930943447284725,3.893298742629706,,,,32,,1.0596381293402778e-08
+B,"H(W | scale, position)",3.770987952604375,0.9427469881510937,,,,,,,3.7703781721570784,3.770987889026087,,,,192,,6.357828776041667e-08
+B,H(W | layer),3.8928899649372273,0.9732224912343068,,,,,,,3.8926932350114267,3.892889962288132,,,,8,,2.6490953233506945e-09
+B,"H(W | layer, matrix)",3.892841259269585,0.9732103148173963,,,,,,,3.8926209577523405,3.892841251322299,,,,24,,7.947285970052083e-09
+B,"H(W | expert, matrix) [per-expert tables]",3.8928545910891996,0.9732136477722999,table cost charged per expert,,,,,,3.892097751240397,3.892839332300137,,,,384,,1.52587890625e-05
+B,"H(W | layer, matrix, scale, position)",3.770723406600224,0.942680851650056,practical lower-bound candidate,,,,,,3.767973957802006,3.7707223681548574,,,,3136,,1.0384453667534721e-06
+B,H(W_i | W_i-1)  Markov-1,3.8675376584177736,0.9668844146044434,,,,,,,3.867255845072167,3.867537653119583,,,,16,,5.298190646701389e-09
+B,"H(W_i | W_i-1, W_i-2)  Markov-2",3.8453811016442483,0.9613452754110621,,,,,,,3.8447153651740384,3.845381016873198,,,,256,,8.477105034722223e-08
+B,H(W_i | W_i-1..3)  Markov-3,3.8289462870821813,0.9572365717705453,,,,,,,3.8243091724024434,3.828944930745376,,,,4096,,1.3563368055555556e-06
+B,"H(W | position, running block max)",3.82106875635981,0.9552671890899525,sequentially decodable,,,,,,3.820428204196275,3.8210686828474145,,,,222,,7.351239522298177e-08
+B,"H(W | pos, runmax, W_i-1)",3.8094943310143674,0.9523735827535919,,,,,,,3.807046466668802,3.809493643905268,,,,2075,,6.871090994940864e-07
+B,"H(W | layer, matrix, scale, pos, runmax)",3.7600424885706167,0.9400106221426542,"everything decodable, combined",,,,,,3.7511047184386483,3.760038415917694,,,,12299,,4.072652922736274e-06
+B,"H(W | pos, running mean magnitude)",3.8088257925707008,0.9522064481426752,sequentially decodable,,,,,,3.8082416094804787,3.8088257104487457,,,,248,,8.212195502387153e-08
+B,"H(W | scale, pos, runmax, W_i-1)",3.7496940346409784,0.9374235086602446,,,,,,,3.744498889975826,3.7496917607237803,,,,6867,,2.2739171981811523e-06
+B,"H(W | scale, pos, runmean, W_i-1)",3.7596169608887187,0.9399042402221797,,,,,,,3.752886578333824,3.7596138988656618,,,,9247,,3.062023056877984e-06
+B,"H(W | layer, mat, scale, pos, runmax, W_i-1)",3.7874090463882735,0.9468522615970684,largest context tried,,,,,,3.7159224332723317,3.7873764608601115,,,,98405,,3.2585528161790637e-05
+B2,two-pass block class (2) + scale + pos,3.7957489125496604,0.9489372281374151,explicit 1 bit per 32-weight block of side info,,,,,,,,,,,,,
+B2,two-pass block class (4) + scale + pos,3.810615794658665,0.9526539486646662,explicit 2 bit per 32-weight block of side info,,,,,,,,,,,,,
+B2,two-pass block class (8) + scale + pos,3.8357640290292108,0.9589410072573027,explicit 3 bit per 32-weight block of side info,,,,,,,,,,,,,
+B2,two-pass block class (16) + scale + pos,3.8649523038107203,0.9662380759526801,explicit 4 bit per 32-weight block of side info,,,,,,,,,,,,,
+C,bit3 sign,,,P(1)=0.4999,0.9999992146406046,0.9999952161595377,0.999999736484445,0.9999952773630099,0.9999999855693205,,,,,,,,
+C,bit2 exp-hi,,,P(1)=0.4306,0.986074282718879,0.9496281791195111,0.973794938025837,0.9153151223902553,0.9860752099629707,,,,,,,,
+C,bit1 exp-lo,,,P(1)=0.4440,0.9909401800988703,0.9883879528232606,0.9902757646889191,0.9874322156008757,0.9909411312828573,,,,,,,,
+C,bit0 mantissa,,,P(1)=0.4130,0.9780569867242833,0.9678963825279722,0.973363330692666,0.9677023103400331,0.9780578260115727,,,,,,,,
+C,"bit-plane coders summed (each cond. scale,pos)",3.8707775065822414,0.9676943766455604,independent planes; >= joint symbol entropy,,,,,,,,,,,,,
+C,bit-plane chain (cond. on higher planes),3.893275613243102,0.9733189033107755,identical to symbol entropy,,,,,,,,,,,,,
+D,PRNG XOR (per matrix),3.99999947024949,0.9999998675623725,"zero-nibble rate 0.0625, zstd-9 1.0000",,,,,,,,,,,,,
+D,PRNG XOR (per expert),3.99999965502325,0.9999999137558125,"zero-nibble rate 0.0625, zstd-9 1.0000",,,,,,,,,,,,,
+D,PRNG XOR (per block),3.9999998754267496,0.9999999688566874,"zero-nibble rate 0.0625, zstd-9 1.0000",,,,,,,,,,,,,
+E,exact duplicate block rate,,,"0.0000% of 1,003,520 blocks",,,,,,,,,,,,,
+E,random pair Hamming distance,,,mean 63.01/128 bit,,,,,,,,,,,,,
+E,block dictionary D=256 (random templates),4.013840255220147,1.0034600638050368,"NN Hamming 46.01/128, zero-nibble 0.1728, H(res|pos)=3.7630",,,,,,,,6.028163580246914e-08,,8.0,,3.763840194938511,
+E,block dictionary D=1024 (random templates),4.004184084788425,1.0010460211971062,"NN Hamming 43.45/128, zero-nibble 0.1953, H(res|pos)=3.6911",,,,,,,,2.4112654320987655e-07,,10.0,,3.691683843661881,
+E,block dictionary D=4096 (random templates),3.9934594105362695,0.9983648526340674,"NN Hamming 41.15/128, zero-nibble 0.2177, H(res|pos)=3.6180",,,,,,,,9.645061728395062e-07,,12.0,,3.618458446030097,
+E,block dictionary D=16384 (random templates),3.967251078573365,0.9918127696433412,"NN Hamming 38.69/128, zero-nibble 0.2472, H(res|pos)=3.5292",,,,,,,,3.858024691358025e-06,,14.0,,3.5297472205486735,
+E,block dictionary D=65536 (random templates),3.8862242435812058,0.9715560608953014,"NN Hamming 35.24/128, zero-nibble 0.2995, H(res|pos)=3.3857",,,,,,,,1.54320987654321e-05,,16.0,,3.3862088114824402,
+E,"nearest of all 983,520 sampled blocks",3.978301256116919,0.9945753140292297,NN Hamming 34.47/128; dictionary storage NOT counted (optimistic bound),,,,,,,,,,,,,
+E,"control: independence-shuffled blocks, D=65536",,,"NN Hamming 36.66/128, H(res)=3.4512; matching the real data means no block structure",,,,,,,,,,,,,

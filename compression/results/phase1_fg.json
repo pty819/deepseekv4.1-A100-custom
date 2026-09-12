@@ -1,0 +1,72 @@
+[
+ {
+  "section": "F",
+  "method": "XOR vs best matching expert",
+  "bits_per_weight": 3.9971416711604255,
+  "ratio_vs_4bit": 0.9992854177901064,
+  "note": "layer 17 w1, aligned (row,k)"
+ },
+ {
+  "section": "F",
+  "method": "XOR vs reference expert 0",
+  "bits_per_weight": 3.997351013999622,
+  "ratio_vs_4bit": 0.9993377534999055,
+  "note": "layer 17 w1, aligned (row,k)"
+ },
+ {
+  "section": "F",
+  "method": "XOR w1 vs w3 (same expert, same position)",
+  "bits_per_weight": 3.9967868157430884,
+  "ratio_vs_4bit": 0.9991967039357721,
+  "note": "agreement 0.0720 vs chance 0.0709"
+ },
+ {
+  "section": "F",
+  "method": "aligned-block NN over 47 experts",
+  "bits_per_weight": null,
+  "ratio_vs_4bit": null,
+  "note": "mean Hamming 49.59/128 vs random pair 63.04"
+ },
+ {
+  "section": "F",
+  "method": "block XOR vs nearest aligned expert",
+  "bits_per_weight": 4.021917449339459,
+  "ratio_vs_4bit": 1.0054793623348648,
+  "note": "H(res)=3.8483, + 5.6 index bits per 32-weight block"
+ },
+ {
+  "section": "G",
+  "method": "raw scale byte",
+  "bits_per_weight": 0.25,
+  "ratio_vs_4bit": null,
+  "note": "8.0000 bit per scale byte; expert total with raw payload 4.2500 bit/weight = 1.0000x"
+ },
+ {
+  "section": "G",
+  "method": "order-0 entropy",
+  "bits_per_weight": 0.03151800340065001,
+  "ratio_vs_4bit": null,
+  "note": "1.0086 bit per scale byte; expert total with raw payload 4.0315 bit/weight = 0.9486x"
+ },
+ {
+  "section": "G",
+  "method": "H(s | left)",
+  "bits_per_weight": 0.03143395199120611,
+  "ratio_vs_4bit": null,
+  "note": "1.0059 bit per scale byte; expert total with raw payload 4.0314 bit/weight = 0.9486x"
+ },
+ {
+  "section": "G",
+  "method": "H(s | left, up)",
+  "bits_per_weight": 0.03140665520860721,
+  "ratio_vs_4bit": null,
+  "note": "1.0050 bit per scale byte; expert total with raw payload 4.0314 bit/weight = 0.9486x"
+ },
+ {
+  "section": "G",
+  "method": "zstd-9 on raw scales",
+  "bits_per_weight": 0.04228877314814815,
+  "ratio_vs_4bit": null,
+  "note": "1.3532 bit per scale byte; expert total with raw payload 4.0423 bit/weight = 0.9511x"
+ }
+]

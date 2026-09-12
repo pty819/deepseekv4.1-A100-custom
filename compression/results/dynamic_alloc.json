@@ -1,0 +1,86 @@
+{
+ "bytes": [
+  {
+   "alloc": "uniform3.5",
+   "storage_bits": 3.5,
+   "expert_damage_rms_pct": 15.4,
+   "transferred_bits_B1": 3.5,
+   "transferred_bits_B8": 3.5,
+   "transferred_bits_B32": 3.4999999999999996,
+   "transferred_bits_B128": 3.500000000000001
+  },
+  {
+   "alloc": "uniform3.0",
+   "storage_bits": 3.0,
+   "expert_damage_rms_pct": 26.77,
+   "transferred_bits_B1": 3.0000000000000004,
+   "transferred_bits_B8": 3.0,
+   "transferred_bits_B32": 2.9999999999999996,
+   "transferred_bits_B128": 3.0000000000000004
+  },
+  {
+   "alloc": "uniform3.75",
+   "storage_bits": 3.75,
+   "expert_damage_rms_pct": 7.7,
+   "transferred_bits_B1": 3.75,
+   "transferred_bits_B8": 3.7500000000000004,
+   "transferred_bits_B32": 3.7499999999999996,
+   "transferred_bits_B128": 3.7500000000000004
+  },
+  {
+   "alloc": "mixed3.5",
+   "storage_bits": 3.500716145833333,
+   "expert_damage_rms_pct": 5.171407617516038,
+   "transferred_bits_B1": 3.9361777777777776,
+   "transferred_bits_B8": 3.9220813789924542,
+   "transferred_bits_B32": 3.889044477457604,
+   "transferred_bits_B128": 3.8118926291640034
+  },
+  {
+   "alloc": "mixed3.25",
+   "storage_bits": 3.250716145833333,
+   "expert_damage_rms_pct": 11.05108233233222,
+   "transferred_bits_B1": 3.756448737373737,
+   "transferred_bits_B8": 3.7096153642940046,
+   "transferred_bits_B32": 3.615587937906678,
+   "transferred_bits_B128": 3.467514955030732
+  }
+ ],
+ "batch": [
+  {
+   "batch": 1,
+   "transferred_budget": 3.5,
+   "uniform_pct": 15.4,
+   "freq_weighted_pct": 16.95791086688029,
+   "bandwidth_optimal_pct": 15.068361765420624
+  },
+  {
+   "batch": 8,
+   "transferred_budget": 3.5,
+   "uniform_pct": 15.4,
+   "freq_weighted_pct": 15.47662642214987,
+   "bandwidth_optimal_pct": 14.360705079317071
+  },
+  {
+   "batch": 32,
+   "transferred_budget": 3.5,
+   "uniform_pct": 15.4,
+   "freq_weighted_pct": 13.244526766231973,
+   "bandwidth_optimal_pct": 12.742189111315799
+  },
+  {
+   "batch": 128,
+   "transferred_budget": 3.5,
+   "uniform_pct": 15.4,
+   "freq_weighted_pct": 10.479474664042884,
+   "bandwidth_optimal_pct": 10.349512689389693
+  },
+  {
+   "batch": 1024,
+   "transferred_budget": 3.5,
+   "uniform_pct": 15.4,
+   "freq_weighted_pct": 7.508771821461986,
+   "bandwidth_optimal_pct": 7.371969937513548
+  }
+ ]
+}
