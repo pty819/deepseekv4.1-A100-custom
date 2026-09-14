@@ -21,13 +21,26 @@ def _check(err, what):
         raise RuntimeError(f"{what} failed with CUDA error {err}")
 
 
-def _cubin(src_name: str) -> bytes:
+def cuda_arch(device: torch.device | None = None) -> str:
+    """nvcc -arch value for this GPU. Override with DSV41_CUDA_ARCH=sm_86 (Ampere GA102 etc.)."""
+    override = os.environ.get("DSV41_CUDA_ARCH", "").strip()
+    if override:
+        return override if override.startswith("sm_") else f"sm_{override.replace('.', '')}"
+    if device is None:
+        if not torch.cuda.is_available():
+            return "sm_80"
+        device = torch.device("cuda:0")
+    major, minor = torch.cuda.get_device_capability(device)
+    return f"sm_{major}{minor}"
+
+
+def _cubin(src_name: str, arch: str) -> bytes:
     src = os.path.join(HERE, "cuda", src_name)
     code = open(src, "rb").read()
     tag = hashlib.sha1(code).hexdigest()[:12]
-    out = os.path.join(HERE, "cuda", f".{src_name}.{tag}.sm80.cubin")
+    out = os.path.join(HERE, "cuda", f".{src_name}.{tag}.{arch}.cubin")
     if not os.path.exists(out):
-        subprocess.run([NVCC, "-cubin", "-arch=sm_80", "-O3", "-o", out, src], check=True)
+        subprocess.run([NVCC, "-cubin", f"-arch={arch}", "-O3", "-o", out, src], check=True)
     return open(out, "rb").read()
 
 
@@ -36,7 +49,7 @@ def get_function(src_name: str, func: str, device: torch.device) -> ctypes.c_voi
     if key not in _modules:
         with torch.cuda.device(device):
             torch.cuda.current_stream()  # make sure the context exists
-            image = _cubin(src_name)
+            image = _cubin(src_name, cuda_arch(device))
             mod = ctypes.c_void_p()
             _check(_cuda.cuModuleLoadData(ctypes.byref(mod), image), "cuModuleLoadData")
             _modules[key] = mod
