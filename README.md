@@ -59,7 +59,7 @@ python -m dsv41.run --devices 2,0,1,4,5,6,7,3 --decode graph --chat \
     --prompt "日本で一番高い山と、その標高を教えてください。"
 ```
 
-Requirements: torch ≥ 2.10 with `float8_e8m0fnu` (we use 2.13+cu130), triton ≥ 3.5, nvcc for `sm_80`
+Requirements: torch ≥ 2.10 with `float8_e8m0fnu` (we use 2.13+cu130), triton ≥ 3.5, nvcc for the GPU arch (auto `sm_80`/`sm_86`/…, or `DSV41_CUDA_ARCH`)
 (`DSV41_NVCC`), transformers/tokenizers/sympy, the checkpoint at `/mnt/ssd/models/DeepSeek-V4.1-Flash`
 (`--ckpt`), ~310 GiB of free GPU memory in total and ~190 GiB of host RAM for the Engram tables.
 
@@ -282,5 +282,33 @@ i.e. 3.13 tokens per verified step. The verification path (6-token steps in the 
 `dsv41/route_telemetry.py` records which experts a task uses: the top-64 experts of a layer carry 83-95% of
 the routing weight for a given task and the sets differ a lot between tasks (a conversation-local working
 set of ~80 experts per layer is what the single-GPU cache should hold).
+
+
+## Ampere sm_86 / 8× A6000 (PCIe) notes
+
+CUDA C kernels in `dsv41/cukern.py` are compiled to a cubin for **the GPU you run on**
+(`torch.cuda.get_device_capability()`, e.g. `sm_86` on A6000 / RTX 3090). Override with
+`DSV41_CUDA_ARCH=sm_86` (or `sm_80`). Cubins are cached as `.<src>.<hash>.<arch>.cubin`.
+
+The published throughput numbers above are from **PCIe** A100s — NVLink is not required.
+Expert parallelism uses CUDA P2P; on pure PCIe leave `DSV41_EP_RELAY` at its default (`0`).
+If you have NVLinked GPU pairs, export `DSV41_EP_RELAY=1`. Large EP messages still prefer
+`DSV41_EP_DMA=auto`.
+
+**8× A6000 48GB** has enough aggregate VRAM for the GPU-resident configuration (~290 GiB
+experts+dense). Example serve:
+
+```
+python -m dsv41.serve --ckpt /path/to/DeepSeek-V4.1-Flash \
+  --devices 0,1,2,3,4,5,6,7 --port 8000
+# or EP:
+# DSV41_EP_RELAY=0 python -m dsv41.serve --ckpt ... --devices 0,1,2,3,4,5,6,7 --ep --port 8000
+```
+
+Expect lower tok/s than A100 HBM (A6000 GDDR6 is ~0.4× the memory bandwidth). Host RAM for
+Engram remains ~200 GiB+. CPU MoE (`--offload-experts cpu`) builds with
+`-march=icelake-server` by default (AVX-512 VNNI/BF16, no AMX); override with `DSV41_CPU_MARCH`.
+
+See also `scripts/serve_a6000_8gpu.sh`.
 
 Not implemented yet: the MTP verification step, continuous batching in the server, the vision encoder.
